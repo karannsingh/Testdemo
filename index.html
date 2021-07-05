@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Test | Demo</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="sidebar">    
+        <h2><img src="logo.png"></h2>
+        <hr>
+        <ul>
+        	<li><a href="#"><i class="fas fa-user"></i><br>Students</a></li>
+            <li class="active vl"><a href="#" class="active"><i class="fas fa-book"></i><br>Lesson Plan</a></li>            
+            <li><a href="#"><i class="fas fa-cog"></i><br>Settings</a></li>	
+        </ul>         
+    </div>
+    <div class="main_content">
+        <div class="header"></div>  
+        <div class="info">
+            <div class="container">
+                <i class="fas fa-caret-left"></i><span>Videos</span>
+                <div class="container-wrap">
+                    <input class="input" type="text" name="Insert URL here" placeholder="Insert URL here">
+                    <br>
+                        or
+                    <br>
+                    <div class="file-upload"> 
+                        <div class="image-upload-wrap">
+                            <input class="file-upload-input" type='file' onchange="readURL(this);" accept="image/*" />
+                                <div class="drag-text">
+                                  <h3>Upload</h3>
+                                </div>
+                        </div>
+                    <div class="file-upload-content">
+                        <img class="file-upload-image" src="#" alt="your image" />
+                        <div class="image-title-wrap">
+                          <button type="button" onclick="removeUpload()" class="remove-image">Remove <span class="image-title">Uploaded Image</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </div>   
+</div>
+
+<script type="text/javascript">
+    function readURL(input) {
+  if (input.files && input.files[0]) {
+
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+      $('.image-upload-wrap').hide();
+
+      $('.file-upload-image').attr('src', e.target.result);
+      $('.file-upload-content').show();
+
+      $('.image-title').html(input.files[0].name);
+    };
+
+    reader.readAsDataURL(input.files[0]);
+
+  } else {
+    removeUpload();
+  }
+}
+
+function removeUpload() {
+  $('.file-upload-input').replaceWith($('.file-upload-input').clone());
+  $('.file-upload-content').hide();
+  $('.image-upload-wrap').show();
+}
+$('.image-upload-wrap').bind('dragover', function () {
+        $('.image-upload-wrap').addClass('image-dropping');
+    });
+    $('.image-upload-wrap').bind('dragleave', function () {
+        $('.image-upload-wrap').removeClass('image-dropping');
+});
+
+</script>
+</body>
+</html>
